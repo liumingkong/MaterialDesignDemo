@@ -1,11 +1,16 @@
-package com.android.black.dagger;
+package widget.base;
 
-import android.app.Application;
-import com.android.black.basic.ui.BaseActivity;
+import android.content.Context;
+
+import widget.base.ui.BaseActivity;
+
+import com.android.black.base.MainApplication;
+import com.android.black.main.MainActivity;
 import com.squareup.otto.Bus;
 
 import dagger.Module;
 import dagger.Provides;
+import widget.view.quickreturn.demo.QuickReturnActivity;
 
 import javax.inject.Singleton;
 
@@ -21,14 +26,18 @@ import javax.inject.Singleton;
         library = true,
 
         injects = {
+                MainApplication.class,
+                BaseApplication.class,
+                MainActivity.class,
                 BaseActivity.class,
+                QuickReturnActivity.class
         },
 
         staticInjections = {
                 Ln.class
         }
 )
-public class BasicModules {
+public class DaggerBasicModule {
     @Singleton
     @Provides
     Bus provideOttoBus() {
@@ -37,7 +46,7 @@ public class BasicModules {
 
     @Singleton
     @Provides
-    Ln.BaseConfig provideBasicConfig(Application context) {
+    Ln.BaseConfig provideBasicConfig(Context context) {
         return new Ln.BaseConfig(context);
     }
 
@@ -45,5 +54,11 @@ public class BasicModules {
     @Provides
     Ln.Print providePrint() {
         return new Ln.Print();
+    }
+
+
+    @Provides
+    Context provideAppContext() {
+        return BaseApplication.getAppContext();
     }
 }

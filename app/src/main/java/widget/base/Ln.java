@@ -1,7 +1,8 @@
-package com.android.black.dagger;
+package widget.base;
 
 
 import android.app.Application;
+import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.util.Log;
 
@@ -228,7 +229,7 @@ public class Ln {
         }
 
         @Inject
-        public BaseConfig(Application context) {
+        public BaseConfig(Context context) {
             try {
                 packageName = context.getPackageName();
                 final int flags = context.getPackageManager()

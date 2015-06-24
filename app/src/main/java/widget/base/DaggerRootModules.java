@@ -1,4 +1,4 @@
-package com.android.black.dagger;
+package widget.base;
 
 import dagger.Module;
 
@@ -10,9 +10,9 @@ import dagger.Module;
  * 创建一个空的Module类，把所有的Module都包含到这个Module中来
  */
 @Module (
-        injects = {
-                BasicModules.class
+        includes = {
+                DaggerBasicModule.class,
         }
 )
-public class AppRootModules {
+public class DaggerRootModules {
 }
